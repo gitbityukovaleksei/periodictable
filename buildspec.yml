@@ -7,9 +7,6 @@ phases:
   build:
     commands:
       - mvn clean install
-    finally:
-      - command
-      - command
   post_build:
     commands:
       - echo Build complited

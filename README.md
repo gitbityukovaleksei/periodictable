@@ -9,3 +9,6 @@ Base CRUD operation implement spring-data-rest
 
     http://localhost:8080/elements
 
+Health check
+
+    http://localhost:8080/actuator/health
