@@ -22,8 +22,6 @@ public class JsonDataSet {
 
     @PostConstruct
     void uploadDataSet() throws IOException {
-        if (resourceFile.getFile().exists()) {
-            elementService.uploadStartDataSet(resourceFile.getFile());
-        }
+        elementService.uploadStartDataSet("/periodic_table.json");
     }
 }

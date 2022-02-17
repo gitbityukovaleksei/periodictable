@@ -12,8 +12,8 @@ import ua.com.lineup.periodictable.domain.dto.ElementDTO;
 import ua.com.lineup.periodictable.repository.ElementRepository;
 
 import javax.persistence.criteria.Predicate;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,10 +28,11 @@ public class ElementService {
         this.elementRepository = elementRepository;
     }
 
-    public void uploadStartDataSet(File file) {
+    public void uploadStartDataSet(String fileName) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            List<ElementDTO> elements = Arrays.asList(objectMapper.readValue(file, ElementDTO[].class));
+            InputStream in = getClass().getResourceAsStream(fileName);
+            List<ElementDTO> elements = Arrays.asList(objectMapper.readValue(in, ElementDTO[].class));
             ModelMapper modelMapper = new ModelMapper();
             for (ElementDTO elementDTO : elements) {
                 elementRepository.save(modelMapper.map(elementDTO, Element.class));
